@@ -27,6 +27,10 @@ public class Datos {
         return personas;
     }
 
+    public static String getid(){
+        return databaseReference.push().getKey();
+    }
+
     public static void setPersonas(ArrayList<Persona> per) {
         personas = per;
     }

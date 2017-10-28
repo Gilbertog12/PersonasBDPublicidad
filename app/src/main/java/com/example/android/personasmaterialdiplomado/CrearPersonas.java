@@ -2,17 +2,24 @@ package com.example.android.personasmaterialdiplomado;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.w3c.dom.Text;
 
@@ -25,20 +32,25 @@ public class CrearPersonas extends AppCompatActivity {
     private TextInputLayout cajaCedula;
     private TextInputLayout cajaNombre;
     private TextInputLayout cajaApellido;
+    private ImageView foto;
 
     private ArrayList<Integer> fotos;
     private Resources res;
     private Spinner sexo;
     private ArrayAdapter<String> adapter;
     private String[] opc;
+    private Uri filepath;
+    private  StorageReference storageReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_personas);
 
+        storageReference = FirebaseStorage.getInstance().getReference();
         txtCedula = (EditText)findViewById(R.id.txtCedula);
         txtNombre = (EditText)findViewById(R.id.txtNombre);
         txtApellido=(EditText)findViewById(R.id.txtApellido);
+        foto = (ImageView)findViewById(R.id.FotoCrear);
         res = this.getResources();
         cajaNombre = (TextInputLayout) findViewById(R.id.cajaNombre);
         cajaApellido = (TextInputLayout)findViewById(R.id.cajaApellido);
@@ -48,24 +60,27 @@ public class CrearPersonas extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,opc);
         sexo.setAdapter(adapter);
 
-       iniciar_fotos();
+
 
 
     }
 
-    public void iniciar_fotos(){
+   /* public void iniciar_fotos(){
         fotos = new ArrayList<>();
         fotos.add(R.drawable.images);
         fotos.add(R.drawable.images2);
         fotos.add(R.drawable.images3);
-    }
+    }*/
 
     public void guadar(View v){
 
         if(validar()) {
-            Persona p = new Persona(Metodos.fotoAleatoria(fotos), txtCedula.getText().toString(),
+            String id = Datos.getid();
+            String foto = id+".jpg";
+            Persona p = new Persona(id,foto,txtCedula.getText().toString(),
                     txtNombre.getText().toString(), txtApellido.getText().toString(), sexo.getSelectedItemPosition());
             p.guardar();
+            SubirFoto(foto);
             Snackbar.make(v, res.getString(R.string.mensaje_guardado), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             limpiar();
@@ -82,6 +97,7 @@ public class CrearPersonas extends AppCompatActivity {
         txtApellido.setText("");
         sexo.setSelection(0);
         txtCedula.requestFocus();
+        foto.setImageDrawable(ResourcesCompat.getDrawable(res,android.R.drawable.ic_menu_gallery,null));
 
     }
 
@@ -110,5 +126,27 @@ public class CrearPersonas extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    public void seleccionar_foto(View V){
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i,res.getString(R.string.mensaje_seleccion)),1);
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode==1){
+            filepath =data.getData();
+            if (filepath !=null){
+                foto.setImageURI(filepath);
+            }
+        }
+    }
+    public  void  SubirFoto(String foto){
+        StorageReference childRef = storageReference.child(foto);
+        UploadTask uploadTask = childRef.putFile(filepath);
     }
 }

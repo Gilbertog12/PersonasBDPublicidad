@@ -26,5 +26,7 @@
     <string name="no_vacio_error">Este campo no puede estar vacío</string>
     <string name="persona_existente_error">Ya existe una persona ingresada con esta cédula</string>
     <string name="Modificar">Modificar</string>
+    <string name="mensaje_seleccion">Seleccione una Foto</string>
+    <string name="mensaje_exito_modificar">modificado Exitosamente</string>
 
 </resources>
