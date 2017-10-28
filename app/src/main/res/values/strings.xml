@@ -28,5 +28,13 @@
     <string name="Modificar">Modificar</string>
     <string name="mensaje_seleccion">Seleccione una Foto</string>
     <string name="mensaje_exito_modificar">modificado Exitosamente</string>
-
+    <string name="id_banner">ca-app-pub-8050534411662869/7515545759</string>
+    <string name="inter">ca-app-pub-8050534411662869/1698088773</string>
+    <string name="Banner_video">ca-app-pub-8050534411662869/2056169665</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="Login">Login</string>
+    <string name="email">E-mail</string>
+    <string name="Contraseña">Contraseña</string>
+    <string name="login">Log In</string>
+    <string name="Crear_Cuenta">Crear Cuenta</string>
 </resources>

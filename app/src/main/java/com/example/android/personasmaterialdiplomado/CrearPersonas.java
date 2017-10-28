@@ -17,6 +17,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -41,6 +45,10 @@ public class CrearPersonas extends AppCompatActivity {
     private String[] opc;
     private Uri filepath;
     private  StorageReference storageReference;
+    private AdView adView;
+    private AdRequest adRequest;
+    private InterstitialAd interstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,10 +67,27 @@ public class CrearPersonas extends AppCompatActivity {
         opc = res.getStringArray(R.array.sexo);
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,opc);
         sexo.setAdapter(adapter);
+        adView= (AdView)findViewById(R.id.adView);
 
 
+        AdRequest adRequest = new  AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId(res.getString(R.string.inter));
+        interstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                otro_inter();
+            }
+        });
+        otro_inter();
 
+    }
+
+    public void otro_inter(){
+        AdRequest adRequest = new AdRequest.Builder().build();
+        interstitialAd.loadAd(adRequest);
     }
 
    /* public void iniciar_fotos(){
@@ -98,7 +123,9 @@ public class CrearPersonas extends AppCompatActivity {
         sexo.setSelection(0);
         txtCedula.requestFocus();
         foto.setImageDrawable(ResourcesCompat.getDrawable(res,android.R.drawable.ic_menu_gallery,null));
-
+        if (interstitialAd.isLoaded()){
+            interstitialAd.show();
+        }
     }
 
     public void onBackPressed(){

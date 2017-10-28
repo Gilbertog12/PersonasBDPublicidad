@@ -23,6 +23,7 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_gravity="center_horizontal"
+        android:onClick="seleccionar_foto"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <android.support.design.widget.TextInputLayout
@@ -83,6 +84,15 @@
             android:layout_weight="1"
             android:onClick="editar"
             android:text="@string/Modificar" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="Cancelar"
+            android:text="@string/Cancelar" />
 
     </LinearLayout>
 

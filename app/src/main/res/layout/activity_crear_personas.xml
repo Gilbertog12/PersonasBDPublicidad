@@ -24,7 +24,8 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_gravity="center"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
+        android:onClick="seleccionar_foto"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/cajaCedula"
@@ -95,5 +96,14 @@
             android:text="@string/limpiar" />
 
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/id_banner"></com.google.android.gms.ads.AdView>
 
 </LinearLayout>
