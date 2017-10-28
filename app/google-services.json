@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1010143005519",
+    "firebase_url": "https://personasmaterialdiplomado-mast.firebaseio.com",
+    "project_id": "personasmaterialdiplomado-mast",
+    "storage_bucket": "personasmaterialdiplomado-mast.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010143005519:android:7b2a84934362964c",
+        "android_client_info": {
+          "package_name": "com.example.android.personasmaterialdiplomado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1010143005519-vba71rd6tit1o64tq81k38crmtvsl96k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.personasmaterialdiplomado",
+            "certificate_hash": "1c3edd78668ad1fde450f15319107534085d4dcd"
+          }
+        },
+        {
+          "client_id": "1010143005519-037u58i3pidgoe69ak9hbf4ffu1snq2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvkG2xvmwgW8KMpe1-sETfTbOQ8-nm4-Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1010143005519-037u58i3pidgoe69ak9hbf4ffu1snq2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
