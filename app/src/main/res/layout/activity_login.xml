@@ -49,6 +49,7 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="ingresar"
                 android:text="@string/login" />
 
             <Button
@@ -56,6 +57,7 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="crear"
                 android:text="@string/Crear_Cuenta" />
 
         </android.support.design.widget.TextInputLayout>
