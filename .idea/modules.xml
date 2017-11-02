@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/PersonasBDPublicidad.iml" filepath="$PROJECT_DIR$/PersonasBDPublicidad.iml" />
       <module fileurl="file://$PROJECT_DIR$/PersonasMaterialDiplomado.iml" filepath="$PROJECT_DIR$/PersonasMaterialDiplomado.iml" />
       <module fileurl="file://$PROJECT_DIR$/PersonasMaterialDiplomado-master.iml" filepath="$PROJECT_DIR$/PersonasMaterialDiplomado-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

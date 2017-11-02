@@ -1,6 +1,7 @@
 package com.example.android.personasmaterialdiplomado;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authStateListener;
     private EditText email;
     private EditText password;
+    private Resources res;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,15 +43,16 @@ public class Login extends AppCompatActivity {
     }
 
     public  void singin(String email, String password){
+
         firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    Intent i = new Intent(Login.this,Principal.class);
+                if (task.isSuccessful()) {
+                    Intent i = new Intent(Login.this, Principal.class);
                     startActivity(i);
                     finish();
-                }else {
-                    Toast.makeText(Login.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -57,13 +60,15 @@ public class Login extends AppCompatActivity {
     }
 
     public void crearUsuario(String email, String password){
+
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    Toast.makeText(Login.this,R.string.mensaje_cuenta_creada_exitosamente,Toast.LENGTH_SHORT);
+
+                if(task.isSuccessful()) {
+                    Toast.makeText(Login.this, R.string.mensaje_cuenta_creada_exitosamente, Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(Login.this,task.getException().getMessage(),Toast.LENGTH_LONG);
+                    Toast.makeText(Login.this, task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -88,5 +93,14 @@ public class Login extends AppCompatActivity {
 
     public  void crear(View V){
         crearUsuario(email.getText().toString(),password.getText().toString());
+    }
+
+    public boolean validar(EditText t, EditText password){
+        if (t.getText().toString().isEmpty()){
+            t.requestFocus();
+            t.setError(res.getString(R.string.no_vacio_error));
+            return true;
+        }
+        return false;
     }
 }

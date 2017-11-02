@@ -40,4 +40,6 @@
     <string name="mensaje_cuenta_creada_exitosamente">cuenta creada exitosamente</string>
     <string name="persona">Persona</string>
     <string name="action_salir">Salir</string>
+    <string name="abrir">Abrir</string>
+    <string name="cerrar">Cerrar</string>
 </resources>
